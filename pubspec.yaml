@@ -66,6 +66,7 @@ flutter:
     - assets/icons/payment/
     - assets/icons/settings/
     - assets/images/
+    - assets/icons/
 
 flutter_gen:
   output: lib/core/assets/

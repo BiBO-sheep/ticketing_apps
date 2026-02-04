@@ -17,14 +17,40 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/add_quantity.svg
+  SvgGenImage get addQuantity =>
+      const SvgGenImage('assets/icons/add_quantity.svg');
+
+  /// File path: assets/icons/delete.svg
+  SvgGenImage get delete => const SvgGenImage('assets/icons/delete.svg');
+
+  /// File path: assets/icons/edit.svg
+  SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
+
   /// Directory path: assets/icons/nav
   $AssetsIconsNavGen get nav => const $AssetsIconsNavGen();
 
   /// Directory path: assets/icons/payment
   $AssetsIconsPaymentGen get payment => const $AssetsIconsPaymentGen();
 
+  /// File path: assets/icons/plus.svg
+  SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
+
+  /// File path: assets/icons/reduce_quantity.svg
+  SvgGenImage get reduceQuantity =>
+      const SvgGenImage('assets/icons/reduce_quantity.svg');
+
   /// Directory path: assets/icons/settings
   $AssetsIconsSettingsGen get settings => const $AssetsIconsSettingsGen();
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+    addQuantity,
+    delete,
+    edit,
+    plus,
+    reduceQuantity,
+  ];
 }
 
 class $AssetsImagesGen {
