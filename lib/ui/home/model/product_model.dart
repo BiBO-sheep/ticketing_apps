@@ -8,7 +8,7 @@ class ProductModel {
     required this.productName,
     required this.type,
     required this.price,
-    this.quantity = 1,
+    this.quantity = 4,
   });
 }
 
