@@ -5,6 +5,7 @@ import 'package:ticketing_apps/core/components/spaces.dart';
 import 'package:ticketing_apps/core/constants/colors.dart';
 import 'package:ticketing_apps/core/extensions/idr_currency.dart';
 import 'package:ticketing_apps/core/widgets/payment_method_button.dart';
+import 'package:ticketing_apps/ui/dialog/payment_qris_dialog.dart';
 import 'package:ticketing_apps/ui/home/model/product_model.dart';
 
 class OrderDetailScreen extends StatelessWidget {
@@ -13,10 +14,7 @@ class OrderDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     int paymentButtonIndex = 0;
-
 
     return Scaffold(
       appBar: AppBar(
@@ -158,7 +156,14 @@ class OrderDetailScreen extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Button.filled(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (paymentButtonIndex == 0) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => PaymentQrisDialog(),
+                        );
+                      }
+                    },
                     label: "Proccess",
                     borderRadius: 20,
                   ),
