@@ -56,40 +56,31 @@ class PaymentSuccessScreen extends StatelessWidget {
                     ),
                   ),
                   SpaceHeight(16),
-                  QrImageView(data: 'payment_receipt_data', version: QrVersions.auto,),
+                  QrImageView(
+                    data: 'payment_receipt_data',
+                    version: QrVersions.auto,
+                  ),
                   SpaceHeight(16),
                   Text('Scan this QR code to verify ticket payment.'),
                   SpaceHeight(18),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('tagihan'),
-                      Text('Rp.150.000'),
-                    ],
+                    children: [Text('tagihan'), Text('Rp.150.000')],
                   ),
                   SpaceHeight(20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Metode Pembayaran'),
-                      Text('QRIS'),
-                    ],
+                    children: [Text('Metode Pembayaran'), Text('QRIS')],
                   ),
                   SpaceHeight(8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Waktu'),
-                      Text('17.08.2026 14:00'),
-                    ],
+                    children: [Text('Waktu'), Text('17.08.2026 14:00')],
                   ),
                   SpaceHeight(8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Status'),
-                        Text('Belum Lunas'),
-                      ],
+                    children: [Text('Status'), Text('Belum Lunas')],
                   ),
                   SpaceHeight(8),
                 ],
@@ -101,7 +92,11 @@ class PaymentSuccessScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.fromLTRB(36, 0, 36, 16),
-        child: Button.filled(onPressed: () {}, label: 'Cetak Transaksi', borderRadius: 20,),
+        child: Button.filled(
+          onPressed: () {},
+          label: 'Cetak Transaksi',
+          borderRadius: 20,
+        ),
       ),
     );
   }
