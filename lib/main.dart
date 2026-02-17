@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ticketing_apps/core/constants/colors.dart';
-import 'package:ticketing_apps/core/data/datasources/auth_remote_datasources.dart';
+import 'package:ticketing_apps/core/data/remotedatasources/auth_remote_datasources.dart';
 import 'package:ticketing_apps/ui/auth/bloc/auth_bloc.dart';
 import 'package:ticketing_apps/ui/auth/splash_screen.dart';
 

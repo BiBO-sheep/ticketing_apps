@@ -2,7 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:ticketing_apps/core/data/datasources/auth_remote_datasources.dart';
+import 'package:ticketing_apps/core/data/remotedatasources/auth_remote_datasources.dart';
 import 'package:ticketing_apps/models/requests/login_request_model.dart';
 import 'package:ticketing_apps/models/responses/login_response_model.dart';
 

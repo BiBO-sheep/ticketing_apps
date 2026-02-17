@@ -6,6 +6,7 @@ import 'package:ticketing_apps/core/components/button.dart';
 import 'package:ticketing_apps/core/components/custom_text_field.dart';
 import 'package:ticketing_apps/core/components/spaces.dart';
 import 'package:ticketing_apps/core/constants/colors.dart';
+import 'package:ticketing_apps/core/data/local_datasources/auth_local_datasources.dart';
 import 'package:ticketing_apps/core/extensions/build_context_ext.dart';
 import 'package:ticketing_apps/ui/auth/bloc/auth_bloc.dart';
 import 'package:ticketing_apps/ui/home/main_screen.dart';
@@ -58,12 +59,16 @@ class LoginScreen extends StatelessWidget {
                           isOutlineBorder: false,
                         ),
                         SpaceHeight(36),
+
                         BlocListener<AuthBloc, AuthState>(
                           listener: (context, state) {
                             // TODO: implement listener
                             state.maybeMap(
                               orElse: () {},
-                              success: (data) {
+                              success: (data) async {
+                                await AuthlocalDatasource().saveAuthData(
+                                  data.loginresponsemodel,
+                                );
                                 context.pushReplacement(MainScreen());
                               },
                               error: (message) {
@@ -103,6 +108,7 @@ class LoginScreen extends StatelessWidget {
                             },
                           ),
                         ),
+
                         SpaceHeight(120),
                         Center(child: Assets.images.logo.image(height: 88)),
                       ],
