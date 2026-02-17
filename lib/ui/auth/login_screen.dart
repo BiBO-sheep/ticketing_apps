@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ticketing_apps/core/assets/assets.gen.dart';
 import 'package:ticketing_apps/core/components/button.dart';
 import 'package:ticketing_apps/core/components/custom_text_field.dart';
 import 'package:ticketing_apps/core/components/spaces.dart';
 import 'package:ticketing_apps/core/constants/colors.dart';
 import 'package:ticketing_apps/core/extensions/build_context_ext.dart';
+import 'package:ticketing_apps/ui/auth/bloc/auth_bloc.dart';
 import 'package:ticketing_apps/ui/home/main_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -56,9 +58,51 @@ class LoginScreen extends StatelessWidget {
                           isOutlineBorder: false,
                         ),
                         SpaceHeight(36),
-                        Button.filled(onPressed: () {
-                          context.pushReplacement(MainScreen());
-                        }, label: 'Login'),
+                        BlocListener<AuthBloc, AuthState>(
+                          listener: (context, state) {
+                            // TODO: implement listener
+                            state.maybeMap(
+                              orElse: () {},
+                              success: (data) {
+                                context.pushReplacement(MainScreen());
+                              },
+                              error: (message) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Login Gagal: ${message.message}',
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: BlocBuilder<AuthBloc, AuthState>(
+                            builder: (context, state) {
+                              return state.maybeWhen(
+                                orElse: () {
+                                  return Button.filled(
+                                    onPressed: () {
+                                      context.read<AuthBloc>().add(
+                                        AuthEvent.login(
+                                          email: emailController.text,
+                                          password: passwordController.text,
+                                        ),
+                                      );
+                                    },
+                                    label: 'Login',
+                                  );
+                                },
+                                loading: () {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
                         SpaceHeight(120),
                         Center(child: Assets.images.logo.image(height: 88)),
                       ],

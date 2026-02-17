@@ -9,7 +9,7 @@ class AuthRemoteDatasource {
     LoginRequestModel data,
   ) async {
     final response = await http.post(
-      Uri.parse('${Variable.baseUrl}/api/login'),
+      Uri.parse('${Variable.baseUrl}api/login'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
