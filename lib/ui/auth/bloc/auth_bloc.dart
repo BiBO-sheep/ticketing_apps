@@ -23,9 +23,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       response.fold(
         (error) => emit(_Error(error)),
-        (data) => emit(_Success(data))
+        (data) => emit(_Success(data)),
       );
       // TODO: implement event handler
+    });
+
+    on<_Logout>((event, emit) async {
+      emit(_Loading());
+
+      final response = await authRemoteDatasource.logout();
+
+      response.fold(
+        (error) => emit(_Error(error)),
+        (data) => emit(_SuccessLogout()),
+      );
     });
   }
 }

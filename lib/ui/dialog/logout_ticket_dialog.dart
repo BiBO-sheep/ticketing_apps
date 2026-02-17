@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ticketing_apps/core/components/button.dart';
 import 'package:ticketing_apps/core/components/spaces.dart';
 import 'package:ticketing_apps/core/constants/colors.dart';
+import 'package:ticketing_apps/core/data/local_datasources/auth_local_datasources.dart';
+import 'package:ticketing_apps/core/extensions/build_context_ext.dart';
+import 'package:ticketing_apps/ui/auth/splash_screen.dart';
 
 class LogoutTicketDialog extends StatefulWidget {
   const LogoutTicketDialog({super.key});
@@ -46,7 +49,10 @@ class _LogoutTicketDialogState extends State<LogoutTicketDialog> {
               ),
               Flexible(
                 child: Button.filled(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await AuthlocalDatasource().removeAuthData();
+                    context.pushReplacement(SplashScreen());
+                  },
                   borderRadius: 8,
                   height: 44,
                   fontSize: 14,
