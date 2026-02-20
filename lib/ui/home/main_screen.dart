@@ -5,7 +5,7 @@ import 'package:ticketing_apps/core/constants/colors.dart';
 import 'package:ticketing_apps/core/extensions/build_context_ext.dart';
 import 'package:ticketing_apps/core/widgets/nav_item.dart';
 import 'package:ticketing_apps/ui/home/history_screen.dart';
-import 'package:ticketing_apps/ui/home/order_screen.dart';
+import 'package:ticketing_apps/ui/product/order_screen.dart';
 import 'package:ticketing_apps/ui/home/qr_screen.dart';
 import 'package:ticketing_apps/ui/home/setting_screen.dart';
 import 'package:ticketing_apps/ui/home/ticket_screen.dart';

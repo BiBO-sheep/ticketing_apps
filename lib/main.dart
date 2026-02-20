@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ticketing_apps/core/constants/colors.dart';
+import 'package:ticketing_apps/core/data/local_datasources/product_local_datasources.dart';
 import 'package:ticketing_apps/core/data/remotedatasources/auth_remote_datasources.dart';
+import 'package:ticketing_apps/core/data/remotedatasources/product_remote_datasources.dart';
+import 'package:ticketing_apps/models/responses/product_response_model.dart';
 import 'package:ticketing_apps/ui/auth/bloc/auth_bloc.dart';
 import 'package:ticketing_apps/ui/auth/splash_screen.dart';
+import 'package:ticketing_apps/ui/product/bloc/product_bloc.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -16,8 +21,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc(AuthRemoteDatasource()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc(AuthRemoteDatasource())),
+        BlocProvider(
+          create: (context) {
+            final remote = ProductRemoteDataSource();
+            final local = ProductLocaldatasource.instance;
+
+            final bloc = ProductBloc(remote, local);
+            bloc.add(ProductEvent.syncProducts());
+
+            return bloc;
+          },
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
